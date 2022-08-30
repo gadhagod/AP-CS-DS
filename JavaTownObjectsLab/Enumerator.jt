@@ -1,0 +1,37 @@
+// Enumerator class "lists" integers from a low to a high value
+// @author Aarav Borthakur
+// @version August 29, 2022
+public class Enumerator 
+{
+    private bottom;
+    private top;
+    private count;
+
+    // Creates an Enumerator object with a given range
+    // @param start     The start of the range (inclusive)
+    // @param end       The end of the range (inclusive)
+    public Enumerator(start, end) 
+    {
+        bottom = start;
+        count = start - 1;
+        top = end;
+    }
+
+    // Checks whether the next countber is within the valid range
+    // @return whether the next countber is within the range
+    public hasNext() 
+    {
+        return count + 1 <= top;
+    }
+
+    // Checks whether the next countber is within the valid range
+    // @precondition the count is lower than the maximum
+    // @postcondition the count is increased by one
+    public next()
+    {
+        if (this.hasNext()) {
+            count = count + 1;
+        }
+        return count;
+    }
+}

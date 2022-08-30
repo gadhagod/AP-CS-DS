@@ -1,0 +1,22 @@
+// Flipper class toggles a boolean
+// @author Aarav Borthakur
+// @version August 29, 2022
+public class Flipper 
+{
+    private state;
+
+    // Creates a Flipper object with state false
+    public Flipper() 
+    {
+        state = false;
+    }
+
+    // Sets the state to the opposite of its current and returns the new state
+    // @postcondition   The state is reversed
+    // @return          The state
+    public next() 
+    {
+        state = !state;
+        return state;
+    }
+}

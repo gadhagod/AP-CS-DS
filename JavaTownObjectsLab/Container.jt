@@ -1,0 +1,13 @@
+public class Container {
+    private stuff;
+
+    public Container(s) { stuff = s; }
+
+    public getStuff() { return stuff; }
+
+    // Sets the stuff in the Container
+    public setStuff(myStuff) 
+    { 
+        stuff =  myStuff;
+    }
+}

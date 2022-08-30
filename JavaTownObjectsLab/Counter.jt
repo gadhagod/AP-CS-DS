@@ -1,0 +1,34 @@
+// Counter class counts in incriments of 1
+// @author Aarav Borthakur
+// @version August 29, 2022
+public class Counter 
+{
+    private count;
+
+    // Creates a counter object with count 0
+    public Counter() 
+    {
+        count = 0;
+    }
+
+    // Increases the count by one
+    // @postcondition   The count is increased by 1
+    public tick() 
+    {
+        count = count + 1;
+    }
+
+    // Returns the count
+    // @return          The count
+    public getCount() 
+    {
+        return count;
+    }
+
+    // Sets the count to 0
+    // @postcondition   Sets the count to 0
+    public reset() 
+    {
+        count = 0;
+    }
+}

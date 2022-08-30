@@ -1,0 +1,32 @@
+// Fibber class implements the Fibonacci sequence
+// @author Aarav Borthakur
+// @version August 29, 2022
+public class Fibber 
+{
+    private count;
+    private num1;
+    private num2;
+
+    // Creates a Fibber object
+    public Fibber() 
+    {
+        count = 0;
+        num1 = 0;
+        num2 = 1;
+    }
+
+    // Returns the next number of the sequence
+    // @return      The next number of the sequence
+    public next() 
+    {
+        if (count % 2 == 0) { // count is even
+            curr = num2;
+            num1 = num2 + num1;
+        } else { // count is odd
+            curr = num1;
+            num2 = num2 + num1;
+        }
+        count = count + 1;
+        return curr;
+    }
+}

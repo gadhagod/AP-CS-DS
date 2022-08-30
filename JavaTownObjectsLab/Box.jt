@@ -1,0 +1,25 @@
+// Box class that stores a number
+// @author Aarav Borthakur
+// @version August 29, 2022
+public class Box {
+	private num;
+
+	// Creates a Box object given a number
+	// @param myNum 	The number to be contained in the Box
+	public Box(myNum) {
+		num = myNum;
+	}
+
+	// Returns the contained number of the Box
+	// @return 			The number in the Box
+	public getValue() {
+		return num;
+	}
+
+	// Changes the contained number
+	// @param num		The Box's new number
+	// @postcondition	The Box's number is set to num
+	public setValue(int myNum) {
+		num = myNum;
+	}
+}
