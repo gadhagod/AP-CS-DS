@@ -1,18 +1,14 @@
 // Swapper class swaps Containers
 // @author Aarav Borthakur
-// @version August 29, 2022
+// @version August 31, 2022
 public class Swapper 
 {
-    // Swapper class swaps two Container references
+    // Creates a Swapper object swaps two Container references
     // @param container1    Container to be swapped with container2
     // @param container2    Container to be swapped with container1
     // @postcondition       Containers are swapped
     public swap(container1, container2)
     {
-        //temp = new Container(container1.getStuff());
-        //container1 = new Container(container2.getStuff());
-        //container2 = temp;
-
         temp = new Container(container1.getStuff());
         container1.setStuff(container2.getStuff());
         container2.setStuff(temp.getStuff());
@@ -20,6 +16,10 @@ public class Swapper
 }
 
 // I had to change the container class because
-// you swap to object without an mutator method,
-// or else you will have mutliple pointers to 
-// the same object (so swapping doesn't work).
+// you can't swap an object without an mutator method.
+// If you change the values of container1 and
+// container2 and inside the function, the objects
+// are not affected outside the class, as the method's
+// local variables are destroyed after the function 
+// exits/returns. So instead, we modify the the value
+// with a mutator.

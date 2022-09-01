@@ -1,11 +1,26 @@
+// Container stores a value
+// @author Aarav Borthakur
+// @version August 31, 2022
 public class Container {
     private stuff;
 
-    public Container(s) { stuff = s; }
+    // Creates a Contaioner object given a value
+    // @param s     The item in in the Container
+    public Container(s) 
+    { 
+        stuff = s; 
+    }
 
-    public getStuff() { return stuff; }
+    // Retrieves the value from the Container
+    // @return      The item in the Container
+    public getStuff() 
+    { 
+        return stuff; 
+    }
 
     // Sets the stuff in the Container
+    // @param myStuff   the new item in the Container
+    // @postcondition   Container object's stuff is set to myStuff
     public setStuff(myStuff) 
     { 
         stuff =  myStuff;
