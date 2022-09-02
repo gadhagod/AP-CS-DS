@@ -6,12 +6,12 @@ public class Swapper
     // Creates a Swapper object swaps two Container references
     // @param container1    Container to be swapped with container2
     // @param container2    Container to be swapped with container1
-    // @postcondition       Containers are swapped
+    // @postcondition       Container objects are swapped
     public swap(container1, container2)
     {
-        temp = new Container(container1.getStuff());
+        temp = container1.getStuff();
         container1.setStuff(container2.getStuff());
-        container2.setStuff(temp.getStuff());
+        container2.setStuff(temp);
     }
 }
 

@@ -17,19 +17,20 @@ public class Enumerator
         top = end;
     }
 
-    // Checks whether the next countber is within the valid range
-    // @return whether the next countber is within the range
+    // Checks whether the next number is within the valid range
+    // @return whether the next number is within the range
     public hasNext() 
     {
         return count + 1 <= top;
     }
 
-    // Checks whether the next countber is within the valid range
+    // Checks whether the next number is within the valid range
     // @precondition the count is lower than the maximum
     // @postcondition the count is increased by one
     public next()
     {
-        if (this.hasNext()) {
+        if (this.hasNext()) 
+        {
             count = count + 1;
         }
         return count;
