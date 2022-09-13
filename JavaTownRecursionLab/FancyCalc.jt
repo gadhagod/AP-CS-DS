@@ -1,0 +1,196 @@
+// FancyCalc performs and demonstreates mathematical operations and sequences
+// @author Aarav Borthakur
+// @version September 12, 2022
+public class FancyCalc
+{
+    // Return the square of a number
+    // @param num       The number to be squared
+    // @return          The number squared
+    public square(num)
+    {
+        return num * num;
+    }
+
+    // Returns the value of a number to a power
+    // @param base      The base of the exponential expression
+    // @param exponent  The exponent to be applied to the base
+    // @return          Base to the power of exponent 
+    public pow(base, exponent)
+    {
+        if(exponent == 0)
+        {
+            return 1;
+        }
+        return base * this.pow(base, exponent - 1);
+    }
+
+    // Returns the value of a number to a power
+    // @param exponent  The exponent to be applied to the base
+    // @return          The base to the power of the exponent 
+    public fastPow(base, exponent) 
+    {
+        if (exponent == 0)
+        {
+            return 1;
+        }
+        if (exponent % 2 == 0)
+        {
+            return this.square(this.fastPow(base, exponent / 2));
+        }
+        return base * this.fastPow(base, exponent - 1);
+    }
+
+    // Finds the greatest common denominator of two numbers
+    // @param num1      The first number
+    // @param num2      The second number
+    // @return          The greatest common denominator of the numbers
+    public gcd(num1, num2)
+    {
+        if (num2 == 0)
+        {
+            return num1;
+        }
+        return this.gcd(num2, num1 % num2);
+    }
+
+    // Determines whether a number is prime
+    // @param num       Number to be determined whether is prime
+    // @return          Whether the number is prime
+    public isPrime(num)
+    {
+        if (num == 1 || num == -1)
+        {
+            return false;
+        }
+        return this.helpPrime(num, 2);
+    }
+
+    // Deterimines whether a number isn't divisible by another number
+    // @param num       The number to be divided
+    // @param divisor   The divisor to divide num by
+    // @return          Whether num isn't divisble by divisor (true if numbers are equal)
+    private helpPrime(num, divisor)
+    {
+        if (divisor == num)
+        {
+            return true;
+        }
+        if (num % divisor == 0)
+        {
+            return false;
+        }
+        return this.helpPrime(num, divisor + 1);
+    }
+
+    // Finds the factorial of a number
+    // @param n         An integer greater than -1
+    // @return          The factorial of n
+    public fact(n)
+    {
+        if (n == 0)
+        {
+            return 1;
+        }
+        return this.factHelp(n - 1, n);
+    }
+
+    // Finds the factorial given the number and the result of the previous factorial computation
+    // Finds factorial of n by recursively multiplying result with n
+    // @param n         The starting number
+    // @return          The result of previous multiplications
+    private factHelp(n, result)
+    {
+        if (n == 0)
+        {
+            return result;
+        }
+        else 
+        {
+            return this.factHelp(n - 1, (result * n));
+        }
+    }
+
+    // Finds the nth number of the Fibonacci sequence (starting from 1)
+    // @param n         The index in the sequence whose value is to be determined
+    // @return          The nth number of the Fibonacci sequence
+    public fib(n)
+    {
+        if (n == 1 || n == 0)
+        {
+            return n;
+        }
+        return this.fib(n - 1) + this.fib(n - 2);
+    }
+
+    // Estimates the square root of a number (inaccurate for imperfect squares)
+    // @param n         The number to be square-rooted
+    // @return          An estimate of square root of num
+    public sqrt(n)
+    {
+        return this.sqrtGuess(1, n, -1, -2);
+    }
+
+    // Gueses the sqrt given the previous guess and the number being sqr rooted
+    // @param guess         The last guess of the sqrt
+    // @param num           The number being square rooted
+    // @param lastGuess     The previous guess of the square root
+    // @param lastLastGuess The previous guess's previous guess of the square root
+    // @return              A guess of the square root of the number
+    private sqrtGuess(guess, num, lastGuess, lastLastGuess)
+    {
+        if (guess == num / guess || num / guess - guess == 1 || lastGuess == guess || guess == lastLastGuess)
+        {
+            guessSqrDiff = (guess * guess) - num;
+            guessLessSqrDiff = (guess - 1) * (guess - 1) - num;
+            guessMoreSqrDiff = (guess + 1) * (guess + 1) - num;
+            
+            if (guessSqrDiff < 0)
+            {
+                guessSqrDiff = guessSqrDiff * -1;
+            }
+            if (guessLessSqrDiff < 0)
+            {
+                guessLessSqrDiff = guessLessSqrDiff * -1;
+            }
+            if (guessMoreSqrDiff < 0)
+            {
+                guessMoreSqrDiff = guessMoreSqrDiff * -1;
+            }
+
+            if (guessSqrDiff < guessLessSqrDiff && guessSqrDiff < guessMoreSqrDiff)
+            {
+                return guess;
+            }
+            if (guessLessSqrDiff < guessMoreSqrDiff)
+            {
+                return guess - 1;
+            }
+            return guess + 1;
+        }
+        lastLastGuess = lastGuess;
+        lastGuess = guess;
+        guess = this.avrg(guess, num / guess);
+        return this.sqrtGuess(guess, num, lastGuess, lastLastGuess);
+    }
+
+    // Finds the average of two numbers
+    // @param num1      One of the numbers to be averaged
+    // @param num2      The other number to be averaged
+    // @return          The average of the number (truncated)
+    private avrg(num1, num2)
+    {
+        return (num1 + num2) / 2;
+    }
+
+    // Finds the sum of the values of an Enumerator
+    // @param enum      The Enumerator to get sum of
+    // @return          The sum of the enum's values
+    public int enumSum(Enumerator enum)
+    {
+        if (enum.hasNext())
+        {
+            return enum.next() + this.enumSum(enum);
+        }
+        return 0;
+    }
+}
