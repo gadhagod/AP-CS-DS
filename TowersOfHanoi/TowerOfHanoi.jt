@@ -1,0 +1,54 @@
+// Towers of Hanoi Skeleton
+// Comment this class completely
+// Do not worry about the display
+// Just fill out the code as per our discussion in class.
+// Make sure to use other available methods in the class.
+public class Towers
+{
+
+    // numDiscs is the number of discs in the first tower
+    private numDiscs;
+
+    // Creates a Tower object
+    // @param num		The number of discs
+    public Towers(num)
+    {
+        numDiscs = num;
+    }
+
+
+    // Moves a tower with n rings from a source to destination
+    // @param n		The number of rings in tower
+    // @param src		The source tower
+    // @param dest		The destination of the rings
+    // @param temp		The place to store the rings when being moved (aux tower)
+    public moveTower(n, src, dest, temp)
+    {
+        if(n > 0)
+        {
+            this.moveTower(n - 1, src, temp, dest)
+            this.moveDisc(src, dest);
+            this.moveTower(n-1, temp, dest, src);
+        }
+        else
+        {
+            return "Base Case! No discs to move";
+        }
+    }
+
+
+    // Moves the top disc from a tower to another
+    // @param src		The current tower of the ring
+    // @param dest		The ending tower of the ring
+    public moveDisc(src, dest)
+    {
+        return "moving 1 disc from " + src + " to " + dest";
+    }
+
+    // Moves a the discs in tower 1 to tower 2
+    public solve()
+    {
+        this.moveTower(numDiscs, 1, 2, 3);
+    }
+
+}
