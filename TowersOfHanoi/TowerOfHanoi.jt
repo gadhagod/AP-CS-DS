@@ -1,8 +1,6 @@
-// Towers of Hanoi Skeleton
-// Comment this class completely
-// Do not worry about the display
-// Just fill out the code as per our discussion in class.
-// Make sure to use other available methods in the class.
+// Solves the Towers of Hanoi problem
+// @author Aarav Borthakur
+// @version September 7, 2022
 public class Towers
 {
 
@@ -50,5 +48,4 @@ public class Towers
     {
         this.moveTower(numDiscs, 1, 2, 3);
     }
-
 }
