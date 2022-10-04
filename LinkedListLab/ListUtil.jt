@@ -44,6 +44,7 @@ public class ListUtil
     // @param list      The original list
     // @param val       The value to be added to list
     // @return          The leading ListNode of the new linked list
+    // @usage           list = ListUtil.add(list, val)
     public add(list, val)
     {
         if (list == null)
@@ -64,6 +65,7 @@ public class ListUtil
     // Removes nodes with a given value from a linked list
     // @param list      The leading ListNode of the linked list
     // @param val       The value to be removed from the list
+    // @usage           list = ListUtil.remove(list, val)
     public remove(list, val)
     {
         if (list == null) 
@@ -98,6 +100,7 @@ public class ListUtil
     // Returns a reversed linked list
     // @param list      The list to be reversed
     // @return          The head node of linked list
+    // @usage           list = ListUtil.remove(list, val)
     public reverse(list)
     {
         if (list == null)

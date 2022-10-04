@@ -1,5 +1,5 @@
 // ListNode is a node in a LinkedList
-// @author Aarav Borthakur
+// @author CollegeBoard
 // @version September 28, 2022
 public class ListNode {
     private _value;
@@ -12,6 +12,14 @@ public class ListNode {
     {
         _value = value;
         _next = next;
+    }
+
+    // Sets the value of the list node
+    // @param val	The new value of the ListNode
+    // @postcondition	The value of the node is changed to val
+    public setValue(val)
+    {
+        _value = val;
     }
 
     // Sets the next item in the list after this ListNode
