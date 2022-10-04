@@ -1,0 +1,33 @@
+// Memorizes values and performs checks for duplicates
+// @author Aarav Borthakur
+// @version September 30, 2022
+public class Memorizer
+{
+    private listUtil;
+    private list;
+
+    // Creates a Memorizer object
+    public Memorizer()
+    {
+        listUtil = new ListUtil();
+        list = null;
+    }
+
+    // Checks whether a value has been psased into this method before
+    // @param val       The value to check for
+    // @return          Whether val has been passed into this method before
+    public seen(val)
+    {
+        if (list == null)
+        {
+            list = new ListNode(val, null);
+            return false;
+        }
+        if (listUtil.isInList(list, val))
+        {
+            return true;
+        }
+        list.setNext(new ListNode(val, null));
+        return false;
+    }
+}

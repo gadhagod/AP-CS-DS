@@ -1,0 +1,131 @@
+// Contains methods to perform operations on ListNodes (linked lists)
+// @author Aarav Borthakur
+// @version September 28, 2022
+public class ListUtil
+{
+    // Determines the size of a linked list
+    // @param list      The ListNode of the linked list
+    // @return          The size of the linked list
+    public size(list)
+    {
+        if (list == null)
+        {
+            return 0;
+        }
+        return 1 + this.size(list.getNext());
+    }
+
+    // Gets the index-th item of list (indeces start from 0)
+    // @param list      The leading ListNode of the linked list
+    // @param index     The index of the desired item of the list, must be less than the size of the list
+    public get(list, index)
+    {
+        if (index == 0)
+        {
+            return list.getValue();
+        }
+        return this.get(list.getNext(), index - 1);
+    }
+
+    // Creates a linked list of a specified length all nodes being of a the same value
+    // @param len       The length of the list
+    // @param val       The value of each node
+    // @return          The leading ListNode of the crated linked list
+    public makeList(len, val)
+    {
+        if (len == 0)
+        {
+            return null;
+        }
+        return new ListNode(val, this.makeList(len - 1, val));
+    }
+
+    // Returns a given linked list with a value added to it
+    // @param list      The original list
+    // @param val       The value to be added to list
+    // @return          The leading ListNode of the new linked list
+    public add(list, val)
+    {
+        if (list == null)
+        {
+            return new ListNode(val, null);
+        }
+        if (list.getNext() == null)
+        {
+            list.setNext(new ListNode(val, null));
+        } 
+        else 
+        {
+            this.add(list.getNext(), val);
+        }
+        return list;
+    }
+
+    // Removes nodes with a given value from a linked list
+    // @param list      The leading ListNode of the linked list
+    // @param val       The value to be removed from the list
+    public remove(list, val)
+    {
+        if (list == null) 
+        {
+            return null;
+        }
+        if (list.getValue() == val)
+        {
+            return this.remove(list.getNext(), val);
+        }
+        list.setNext(this.remove(list.getNext(), val));
+        return list;
+    }
+
+    // Checks whether a value is in a linked list
+    // @param list      The leading ListNode of the linked list
+    // @param val       The value to be searched for
+    // @return          Whether the value is in the linked list
+    public isInList(list, val)
+    {
+        if (list == null)
+        {
+            return false;
+        }
+        if (list.getValue() == val)
+        {
+            return true;
+        }
+        return this.isInList(list.getNext(), val);
+    }
+
+    // Returns a reversed linked list
+    // @param list      The list to be reversed
+    // @return          The head node of linked list
+    public reverse(list)
+    {
+        if (list == null)
+        {
+            return null;
+        }
+        if (list.getNext() == null)
+        {
+            return list;
+        }
+        head = this.reverse(list.getNext());
+        this.append(head, list);
+        list.setNext(null);
+        return head;
+    }
+
+    // Adds a node to the end of a linked list
+    // @param list      The list to be appended to
+    // @param node      The node to append the list to
+    private append(list, node)
+    {
+        if (list.getNext() == null)
+        {
+            list.setNext(node);
+        }
+        else 
+        {
+            this.append(list.getNext(), node);
+        }
+    }
+}

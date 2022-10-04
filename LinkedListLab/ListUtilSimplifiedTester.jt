@@ -1,0 +1,56 @@
+// 
+// This simplified tester is a file containing a test suite of commands that will 
+// test all your ListUtil methods
+// @author Ms. Datar 
+// @version September 29, 2016
+//
+//
+// @Usage :  Load all your classes ListNode, ListUtil and Memorizer
+// Copy and paste sets of commands from teh testSet() below
+// Take screenshots where it says to stop and show your teacher
+// Get checked off for all when you have them ready
+//
+public class ListTester
+{
+	private u;
+	private list;
+
+// Begin Testing
+public testSet()
+{	list = null;	u = new ListUtil();	size1 = u.size(list);
+ 	list = u.add(list, 7);
+	size2 = u.size(list); 	x = u.get(list,0);
+	// Take screenshot here.Stop here and show your teacher your results
+	list = new ListNode(5,          new ListNode(-6,          new ListNode(4,          new ListNode(2,null))));	size = u.size(list);	x1 = u.get(list,1);	x3 = u.get(list,3);
+	// Take screenshot hereStop here and show your teacher your results
+
+	list = u.add(list,-6);	list = u.remove(list,5);	list = u.remove(list,-6);	list = u.remove(list,4);	list = u.remove(list,2);	list = u.remove(list,4);
+	// Stop here and show your teacher your results
+
+	cute = u.makeList(3,"Cutie");
+	// Take screenshot here.Stop here and show your teacher your results
+
+	cute = null;
+	// Take screenshot here.Stop here and show your teacher your results
+	a = new Memorizer();	b = new Memorizer();	x1 = a.seen(7);
+	x2 = a.seen(15);	x3 = a.seen(7);
+	x4 = b.seen(7);	x5 = b.seen(7);
+
+	// Take screenshot here.Stop here and show your teacher your results
+	a = null;
+	b = null;
+
+	// Take screenshot here.Stop here and show your teacher your results
+
+	list = new ListNode(5,          new ListNode(-6,          new ListNode(4,          new ListNode(2,null))));	// Take screenshot here. Stop here and show your teacher your results
+	list = u.reverse(list);
+
+	// Take screenshot here.Stop here and show your teacher your results
+	list = null;	list = u.reverse (list);
+
+	// Take screenshot here.Stop here and show your teacher your results
+	list = u.add(list,12);	list = u.reverse(list);
+	// Take screenshot here.Stop here and show your teacher your results
+
+}
+}

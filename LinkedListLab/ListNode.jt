@@ -1,0 +1,38 @@
+// ListNode is a node in a LinkedList
+// @author Aarav Borthakur
+// @version September 28, 2022
+public class ListNode {
+    private _value;
+    private _next;
+
+    // Creates a ListNode object
+    // @param value     The value of the current item of the list
+    // @param next      The next ListNode in the list (or null if this is the last item)
+    public ListNode(value, next)
+    {
+        _value = value;
+        _next = next;
+    }
+
+    // Sets the next item in the list after this ListNode
+    // @param next      The next ListNode in the list (or null if this is the last item)
+    // @postcondition   The next node value in the list is set to next
+    public setNext(next)
+    {
+        _next = next;
+    }
+
+    // Gets the next ListNode in the linked list
+    // @return t        The next ListNode in the linked list (or null if this ListNode is the last)
+    public getNext()
+    {
+        return _next;
+    }
+
+    // Gets the value of the current ListNode
+    // @return          The value of the current node of the list
+    public getValue()
+    {
+        return _value;
+    }
+}
