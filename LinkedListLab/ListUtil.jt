@@ -100,7 +100,7 @@ public class ListUtil
     // Returns a reversed linked list
     // @param list      The list to be reversed
     // @return          The head node of linked list
-    // @usage           list = ListUtil.remove(list, val)
+    // @usage           list = ListUtil.reverse(list, val)
     public reverse(list)
     {
         if (list == null)
@@ -111,24 +111,31 @@ public class ListUtil
         {
             return list;
         }
-        head = this.reverse(list.getNext());
-        this.append(head, list);
+        next = this.reverse(list.getNext());
+        next.setNext(list);
         list.setNext(null);
-        return head;
+        return list;
     }
 
-    // Adds a node to the end of a linked list
-    // @param list      The list to be appended to
-    // @param node      The node to append the list to
-    private append(list, node)
+    public getLast(list)
     {
+        if (list == null)
+        {
+            return null;
+        }
         if (list.getNext() == null)
         {
-            list.setNext(node);
+            return list;
         }
-        else 
-        {
-            this.append(list.getNext(), node);
-        }
+        return this.getLast(list.getNext());
+    }
+
+    // Gets the last item in a linked list
+    // @param list      The 
+    // @param node      The node to append the list to
+    public reverse(list)
+    {
+        last = list;
+        first = reverse
     }
 }
