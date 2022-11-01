@@ -105,7 +105,6 @@ public class MyArrayList<E>
 	*/
 	public boolean add(E obj)
 	{
-		modified = true;
 		if(getCapacity() == size) 
 		{
             doubleCapacity();
@@ -135,9 +134,22 @@ public class MyArrayList<E>
         return (E) temp;
 	}
 
+	/**
+	 * Gets an iterator for the list
+	 * @return 		A unidirectional iterator that can remove values
+	 */
 	public Iterator<E> iterator()
 	{
 		return new MyArrayListIterator();
+	}
+
+	/**
+	 * Gets a listIterator for the list
+	 * @return		A bidirectional iterator that can add and remove elements
+	 */
+	public ListIterator<E> listIterator()
+	{
+		return new MyArrayListListIterator();
 	}
 
 	/**
@@ -151,6 +163,7 @@ public class MyArrayList<E>
 	*/
 	public void add(int index, E obj)
 	{
+		modified = true;
 		if(size >= values.length) {
             doubleCapacity();
         }
@@ -179,7 +192,7 @@ public class MyArrayList<E>
 			nextIndex = 0;
 		}
 		/**
-		 * Returns whether there is a next value in the list
+		 * Checks whether there is a next value in the list
 		 * @return 		Whether there is a next value in the list
 		 */
 		public boolean hasNext()
@@ -195,7 +208,7 @@ public class MyArrayList<E>
 		public E next()
 		{
 			Object temp = values[nextIndex];
-            nextIndex++;
+            nextIndex++;	
             return (E) temp;
 		}
 
@@ -211,6 +224,8 @@ public class MyArrayList<E>
 
 	/**
 	 * MyArrayListListIterator is a bidirectional iterator that can add and remove elements
+	 * @author Aarav Borthakur
+	 * @version October 22, 2022 
 	 */
 	private class MyArrayListListIterator extends MyArrayListIterator implements ListIterator<E>
 	{
@@ -232,15 +247,15 @@ public class MyArrayList<E>
 		 * 
 		 * Returns next element in the list
 		 * @postcondition 	moves pointer forward
-		 * @return 			next Object in MyArryaList
+		 * @return 			next Object in the myArrayList
 		 */
 		public E next()
 		{
 			if (modified)
 			{
-				throw new ConcurrentModificationException();
+				//throw new ConcurrentModificationException();
 			}
-			Object val = values[nextIndex];
+			Object val = get(nextIndex);
 			nextIndex++;
 			previousIndex++;
 			forward = true;
