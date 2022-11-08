@@ -1,6 +1,7 @@
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /*
  * My implementation of an ArrayList
@@ -11,7 +12,7 @@ public class MyArrayList<E>
 {
 	private int size;
 	private Object[] values; 
-	private boolean modified; // Whether elements have been added/removed
+	private int modified; // Whether elements have been added/removed
 
 	/*
 	 * Creates a MyArrayList
@@ -92,6 +93,7 @@ public class MyArrayList<E>
 	*/
 	public E set(int index, E obj)
 	{
+		modified++;
 		Object prev = values[index];
 		values[index] = obj;
 		return (E) prev;
@@ -105,10 +107,7 @@ public class MyArrayList<E>
 	*/
 	public boolean add(E obj)
 	{
-		if(getCapacity() == size) 
-		{
-            doubleCapacity();
-        }
+		modified++;
         add(size, obj);
         return true;
 	}
@@ -124,9 +123,9 @@ public class MyArrayList<E>
 	*/
 	public E remove(int index)
 	{
-		modified = true;
+		modified++;
 		Object temp = values[index];
-        for(int i = index + 1; i < getCapacity(); i++) 
+        for(int i = index + 1; i < size; i++) 
 		{
             values[i - 1] = values[i];
         }
@@ -163,12 +162,12 @@ public class MyArrayList<E>
 	*/
 	public void add(int index, E obj)
 	{
-		modified = true;
-		if(size >= values.length) {
+		modified++;
+		if(size >= getCapacity()) {
             doubleCapacity();
         }
-        for(int i = index + 1; i < values.length; i++) {
-            values[i]=values[i-1];
+        for(int i = size - 1; i >= index; i--) {
+            values[i+1]=values[i];
         }
         values[index] = obj;
         size++;
@@ -183,6 +182,7 @@ public class MyArrayList<E>
 	{
 		//the index of the value that will be returned by next()
 		private int nextIndex;
+		private int itModified;
 
 		/**
 		 * Creates a MyArrayListIterator
@@ -190,6 +190,7 @@ public class MyArrayList<E>
 		public MyArrayListIterator()
 		{
 			nextIndex = 0;
+			itModified = modified;
 		}
 		/**
 		 * Checks whether there is a next value in the list
@@ -197,7 +198,7 @@ public class MyArrayList<E>
 		 */
 		public boolean hasNext()
 		{
-			return nextIndex < size && values[nextIndex] != null;
+			return nextIndex < size;
 		}
 
 		/**
@@ -207,9 +208,14 @@ public class MyArrayList<E>
 		 */
 		public E next()
 		{
-			Object temp = values[nextIndex];
-            nextIndex++;	
-            return (E) temp;
+			if(itModified != modified) {
+                throw new ConcurrentModificationException("MyArrayList was modified outside of the iterator");
+            }
+            if(hasNext()) {
+                nextIndex++;
+                return (E) values[nextIndex-1];
+            }
+            throw new NoSuchElementException("Iterator is at end of list");
 		}
 
 		/*
@@ -218,7 +224,13 @@ public class MyArrayList<E>
 		 */
 		public void remove()
 		{
-			MyArrayList.this.remove(nextIndex - 1);
+			if (nextIndex == 0) {
+                throw new IllegalStateException("next hasn't been called");
+            }
+            for (int i = nextIndex; i < size; i++) {
+                values[i - 1] = values[i];
+            }
+            size--;
 		}
 	}
 
@@ -232,6 +244,7 @@ public class MyArrayList<E>
 		private int nextIndex;
 		private int previousIndex;// Index of element that will be returned by the next call of next()
 		private boolean forward; //direction of traversal
+		private int itModified;
 
 		/**
 		 * Constructs a new MyArrayListListIterator
@@ -241,6 +254,16 @@ public class MyArrayList<E>
 			nextIndex = 0;
 			previousIndex = -1;
 			forward = true;
+			itModified = modified;
+		}
+
+		/**
+		 * Checks if the next index is in the list
+		 * @return 		whether the next index is in the list
+		 */
+		public boolean hasNext()
+		{
+			return nextIndex < size;
 		}
 		
 		/**
@@ -251,15 +274,16 @@ public class MyArrayList<E>
 		 */
 		public E next()
 		{
-			if (modified)
-			{
-				//throw new ConcurrentModificationException();
+			if(itModified != modified) {
+				throw new ConcurrentModificationException("MyArrayList was modified outside of the iterator");
 			}
-			Object val = get(nextIndex);
-			nextIndex++;
-			previousIndex++;
-			forward = true;
-			return (E) val;
+			
+			if(hasNext()) {
+				nextIndex++;
+				previousIndex++;
+				return (E) values[nextIndex - 1];
+			}
+			throw new NoSuchElementException("Iterator is at end of list");
 		}
 
 		/**
@@ -269,7 +293,16 @@ public class MyArrayList<E>
 		 */
 		public void add(E obj)
 		{
-			MyArrayList.this.add(nextIndex, obj);
+			if (size == values.length)
+			{
+				doubleCapacity();
+			}
+			for (int i = size - 1; i >= nextIndex; i--)
+			{
+				values[i + 1] = values[i];
+			}
+			values[nextIndex] = obj;
+			size++;
 		}
 
 		/**
@@ -288,10 +321,12 @@ public class MyArrayList<E>
 		 */
 		public E previous()
 		{
-			forward = false;
-			nextIndex--;
-			previousIndex--;
-			return get(nextIndex);
+			if(hasPrevious()) {
+                nextIndex--;
+                previousIndex--;
+                return (E) values[previousIndex + 1];
+            }
+            throw new NoSuchElementException("Iterator has reached beginning of list");
 		}
 
 		/**
@@ -320,14 +355,15 @@ public class MyArrayList<E>
 		 */
 		public void remove()
 		{
-			if (forward)
+			if (nextIndex == 0)
 			{
-				MyArrayList.this.remove(previousIndex);
+				throw new IllegalStateException("No next() has been called");
 			}
-			else 
+			for (int i = nextIndex; i < size; i++)
 			{
-				MyArrayList.this.remove(nextIndex);
+				values[i - 1] = values[i];
 			}
+			size--;
 		}
 
 		/**
@@ -337,14 +373,7 @@ public class MyArrayList<E>
 		 */
 		public void set(E obj)
 		{
-			if (forward)
-			{
-				MyArrayList.this.set(previousIndex, obj);
-			}
-			else 
-			{
-				MyArrayList.this.set(nextIndex, obj);
-			}
+            values[nextIndex - 1] = obj;
 		}
 	}
 }
