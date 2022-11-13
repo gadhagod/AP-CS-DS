@@ -208,12 +208,12 @@ public class MyArrayList<E>
 		 */
 		public E next()
 		{
-			if(itModified != modified) {
+			if (itModified != modified) {
                 throw new ConcurrentModificationException("MyArrayList was modified outside of the iterator");
             }
-            if(hasNext()) {
+            if (hasNext()) {
                 nextIndex++;
-                return (E) values[nextIndex-1];
+                return (E) values[nextIndex - 1];
             }
             throw new NoSuchElementException("Iterator is at end of list");
 		}
