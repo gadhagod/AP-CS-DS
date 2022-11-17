@@ -44,6 +44,24 @@ public class Solitaire
         //display.selectFoundation(0);
         createStock();
         deal();
+        int sum = 0;
+        System.out.println(stock.size());
+        System.out.println(waste.size());
+        System.out.println(piles[0].size());
+        System.out.println(piles[1].size());
+        System.out.println(piles[2].size());
+        System.out.println(piles[3].size());
+        System.out.println(piles[4].size());
+        System.out.println(piles[5].size());
+        System.out.println(piles[6].size());
+
+        sum += stock.size();
+        sum += waste.size();
+        for (int i = 0 ; i < 7; i++)
+        {
+            sum += piles[i].size();
+        }
+        System.out.println(sum);
     }
 
     /**
@@ -188,7 +206,7 @@ public class Solitaire
         {
             return card.getRank() == 1;
         }
-        return card.getSuit().equals(card.getSuit()) && card.getRank() == thisFoundation.peek().getRank();
+        return card.getSuit().equals(card.getSuit()) && card.getRank() == thisFoundation.peek().getRank() + 1;
     }
 
     /**
@@ -313,6 +331,7 @@ public class Solitaire
         Stack<Card> origin;
         if (display.isPileSelected())
         {
+            System.out.println("hi");
             origin = piles[display.selectedPile()];
         }
         else if (display.isWasteSelected())
@@ -331,15 +350,16 @@ public class Solitaire
             }
             return;
         }
-        System.out.println("testing");
         if (!origin.isEmpty() && canAddToFoundation(origin.peek(), index))
         {
+            System.out.println("hi");
             foundations[index].push(origin.pop());
             display.unselect();
             if (isGameWon())
             {
                 System.out.println("YOU WIN!!!! GOOD JOB!!!!!!!!!!!!!!!!");
             }
+
         }
     }
 
