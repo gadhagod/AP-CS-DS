@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Write a description of class StringUtil here.
+ * Expressions evauluates mathematical expressions
  * 
  * @author Anu Datar, Aarav Borthakur
  * @version 11/07/2022
