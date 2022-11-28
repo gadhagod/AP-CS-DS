@@ -222,7 +222,7 @@ public class Solitaire
                 return false;
             }
         }
-        return true;
+        return stock.isEmpty() && waste.isEmpty();
     }
 
     /**
@@ -331,7 +331,6 @@ public class Solitaire
         Stack<Card> origin;
         if (display.isPileSelected())
         {
-            System.out.println("hi");
             origin = piles[display.selectedPile()];
         }
         else if (display.isWasteSelected())
@@ -352,14 +351,12 @@ public class Solitaire
         }
         if (!origin.isEmpty() && canAddToFoundation(origin.peek(), index))
         {
-            System.out.println("hi");
             foundations[index].push(origin.pop());
             display.unselect();
             if (isGameWon())
             {
                 System.out.println("YOU WIN!!!! GOOD JOB!!!!!!!!!!!!!!!!");
             }
-
         }
     }
 
