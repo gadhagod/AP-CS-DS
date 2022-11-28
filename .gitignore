@@ -26,3 +26,7 @@ replay_pid*
 .DS_Store
 screenshots
 *.zip
+
+misc/*Tester.java
+
+Submission*
