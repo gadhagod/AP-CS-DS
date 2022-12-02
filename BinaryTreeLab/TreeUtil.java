@@ -302,6 +302,7 @@ public class TreeUtil
         while (true)
         {
             twentyQuestionsRound(t, null);
+            saveTree("knowledge.txt", t);
         }
     }
     /**
