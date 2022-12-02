@@ -119,7 +119,7 @@ public class TreeDisplay extends JComponent
         drawTree(g2, root, leftPad + ARC_PAD,
             d.width - rightPad - ARC_PAD,
             textHeight / 2 + ARC_PAD,
-            (d.height - textHeight - 2 * ARC_PAD) / (depth - 1));
+            (d.height - textHeight - 2 * ARC_PAD) / depth);
     }
 
     //draws the tree, starting from the given node, in the region with x values ranging
