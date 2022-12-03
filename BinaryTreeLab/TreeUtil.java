@@ -14,7 +14,7 @@ import java.util.*;
  * saveTree
  * buildTree
  * loadTree
- * twentyQuestions (plays the )
+ * twentyQuestions (plays the twenty questions game)
  * copy
  * sameShape
  * createDecodingTree
