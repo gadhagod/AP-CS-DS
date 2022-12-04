@@ -159,9 +159,12 @@ public class TreeUtil
      */
     public static void inOrder(TreeNode t, TreeDisplay display)
     {
-        preOrder(t.getLeft(), display);
-        display.visit(t);
-        preOrder(t.getRight(), display);
+        if (t != null)
+        {
+            inOrder(t.getLeft(), display);
+            display.visit(t);
+            inOrder(t.getRight(), display);
+        }
     }
     /**
      * perform a post-order traversal of the binary tree rooted at t, lighting
@@ -172,9 +175,12 @@ public class TreeUtil
      */
     public static void postOrder(TreeNode t, TreeDisplay display)
     {
-        preOrder(t.getLeft(), display);
-        preOrder(t.getRight(), display);
-        display.visit(t);
+        if (t != null)
+        {
+            postOrder(t.getLeft(), display);
+            postOrder(t.getRight(), display);
+            display.visit(t);
+        }
     }
     /**
      * fill a list with the values of a binary tree rooted at t using a 
