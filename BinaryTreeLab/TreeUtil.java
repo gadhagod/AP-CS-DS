@@ -29,6 +29,7 @@ public class TreeUtil
     //used to prompt for command line input
     private static Scanner in = new Scanner(System.in);
     private static final boolean debug = false;
+    private static boolean twentyQsGameOver = false;
 
     /**
      * Retrieves the value in the leftmost node of the tree. It is 
@@ -273,6 +274,11 @@ public class TreeUtil
         {
             System.out.println("Is this an " + t.getValue());
             String response = getUserInput();
+            if (response.equals("quit"))
+            {
+                twentyQsGameOver = true;
+                return;
+            }
             if (response.equals("yes"))
             {
                 twentyQuestionsRound(t.getLeft(), display);
@@ -286,6 +292,7 @@ public class TreeUtil
                     System.out.println("What differentiates a " + t.getValue() + " and a " + newEntry);
                     String temp = (String) t.getValue();
                     String differentiator = getUserInput();
+
                     t.setValue(differentiator);
                     t.setLeft(new TreeNode(newEntry));
                     t.setRight(new TreeNode(temp));
@@ -305,7 +312,7 @@ public class TreeUtil
     public static void twentyQuestions()
     {
         TreeNode t = buildTree(FileUtil.loadFile("knowledge.txt"));
-        while (true)
+        for (int i = 0; twentyQsGameOver == false; i++)
         {
             twentyQuestionsRound(t, null);
             saveTree("knowledge.txt", t);
