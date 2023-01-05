@@ -4,13 +4,13 @@
  * @author Anu Datar with inputs from Sorjo Baneerjee (class of 2016)
  * @version 1/14/15
  */
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class BinarySearchTreeTester extends BinaryTreeTester
 {
+    /**
+     * Constructs a BinarySearchTreeTester
+     */
     public BinarySearchTreeTester()
     {
         System.out.println("Welcome to the Binary Search Tree Tester.");
@@ -79,14 +79,19 @@ public class BinarySearchTreeTester extends BinaryTreeTester
         System.out.println("Done");
     }
     /**
-    * called by the display object to send back the node value
+    * Called by the display object to send back the node value
     * when a node is visited
+    * @param value      The value to be sent
     */
     public void sendValue(Object value)
     {
         //System.out.println(value);
     }
 
+    /**
+     * Runs the tester
+     * @param args      The array of command line arguments
+     */
 	public static void main(String[] args)
 	{
 		BinarySearchTreeTester myStudents = new BinarySearchTreeTester();

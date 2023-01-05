@@ -129,7 +129,8 @@ public class BinaryTreeTester
     }
 
     /**
-     * Tests the TreeUtil methods to save a Binary Tree to file and reconstruct it by reading back the contents.
+     * Tests the TreeUtil methods to save a Binary Tree to 
+     * file and reconstruct it by reading back the contents.
      */
     private void fileTest()
     {
@@ -281,7 +282,7 @@ public class BinaryTreeTester
         System.out.print(value + " ");
     }
 
-    public static void main (String [] args)
+    public static void main (String[] args)
     {
         BinaryTreeTester richard = new BinaryTreeTester();
         richard.test();

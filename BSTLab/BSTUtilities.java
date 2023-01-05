@@ -64,17 +64,16 @@ public abstract class BSTUtilities
 			return new TreeNode(x);
 		}
 		display.visit(t);
-		if (x.equals(t.getValue()))
+		if (!x.equals(t.getValue()))
 		{
-			return t;
-		}
-		if(isGreater(x, t.getValue()))
-		{
-			t.setRight(insert(t.getRight(), x, display));
-		}
-		else
-		{
-			t.setLeft(insert(t.getLeft(), x, display));
+			if(isGreater(x, t.getValue()))
+			{
+				t.setRight(insert(t.getRight(), x, display));
+			}
+			else
+			{
+				t.setLeft(insert(t.getLeft(), x, display));
+			}
 		}
 		return t;
 	}
@@ -96,7 +95,6 @@ public abstract class BSTUtilities
 		}
         if(currentNode.getLeft() == null) 				
 		{
-
             return currentNode.getRight();
 		}
         else if(currentNode.getRight() == null)

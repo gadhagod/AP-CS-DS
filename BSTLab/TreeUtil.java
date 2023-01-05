@@ -14,7 +14,7 @@ import java.util.*;
  * saveTree
  * buildTree
  * loadTree
- * twentyQuestions (plays the )
+ * twentyQuestions (plays the twenty questions game)
  * copy
  * sameShape
  * createDecodingTree
@@ -29,6 +29,7 @@ public class TreeUtil
     //used to prompt for command line input
     private static Scanner in = new Scanner(System.in);
     private static final boolean debug = false;
+    private static boolean twentyQsGameOver = false;
 
     /**
      * Retrieves the value in the leftmost node of the tree. It is 
@@ -159,9 +160,12 @@ public class TreeUtil
      */
     public static void inOrder(TreeNode t, TreeDisplay display)
     {
-        preOrder(t.getLeft(), display);
-        display.visit(t);
-        preOrder(t.getRight(), display);
+        if (t != null)
+        {
+            inOrder(t.getLeft(), display);
+            display.visit(t);
+            inOrder(t.getRight(), display);
+        }
     }
     /**
      * perform a post-order traversal of the binary tree rooted at t, lighting
@@ -172,9 +176,12 @@ public class TreeUtil
      */
     public static void postOrder(TreeNode t, TreeDisplay display)
     {
-        preOrder(t.getLeft(), display);
-        preOrder(t.getRight(), display);
-        display.visit(t);
+        if (t != null)
+        {
+            postOrder(t.getLeft(), display);
+            postOrder(t.getRight(), display);
+            display.visit(t);
+        }
     }
     /**
      * fill a list with the values of a binary tree rooted at t using a 
@@ -267,6 +274,11 @@ public class TreeUtil
         {
             System.out.println("Is this an " + t.getValue());
             String response = getUserInput();
+            if (response.equals("quit"))
+            {
+                twentyQsGameOver = true;
+                return;
+            }
             if (response.equals("yes"))
             {
                 twentyQuestionsRound(t.getLeft(), display);
@@ -280,6 +292,7 @@ public class TreeUtil
                     System.out.println("What differentiates a " + t.getValue() + " and a " + newEntry);
                     String temp = (String) t.getValue();
                     String differentiator = getUserInput();
+
                     t.setValue(differentiator);
                     t.setLeft(new TreeNode(newEntry));
                     t.setRight(new TreeNode(temp));
@@ -299,7 +312,7 @@ public class TreeUtil
     public static void twentyQuestions()
     {
         TreeNode t = buildTree(FileUtil.loadFile("knowledge.txt"));
-        while (true)
+        for (int i = 0; twentyQsGameOver == false; i++)
         {
             twentyQuestionsRound(t, null);
             saveTree("knowledge.txt", t);
