@@ -61,16 +61,11 @@ public class TreeUtil
      */
     public static Object rightmost(TreeNode t)
     {
-        if (t == null)
+        if (t == null || t.getRight() == null)
         {
             return t;
         }
-        TreeNode current = t;
-        while (current.getRight() != null)
-        {
-            current = current.getRight();
-        }
-        return current.getValue();
+        return rightmost(t.getRight());
     }
     /**
      * maxDepth calculates the maximum depth of a binary tree.  An empty tree has 
@@ -133,7 +128,7 @@ public class TreeUtil
         {
             return 1;
         }
-        return countLeaves(t.getRight()) + countLeaves(t.getRight());
+        return countLeaves(t.getRight()) + countLeaves(t.getLeft());
     }
     /**
      * perform a pre-order traversal of the binary tree rooted at t, lighting
