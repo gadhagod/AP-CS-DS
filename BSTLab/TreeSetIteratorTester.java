@@ -1,11 +1,13 @@
 /**
  * Tester for the MyTreeSet add, remove and contains method
+ * Tests the iterator implementation of the TreeSet
+ * @author Kabir R
  * @author Anu Datar
  * @version 12/16/2014
  */
 import java.util.*;
 
-public class TreeSetTester
+public class TreeSetIteratorTester
 {
     private static final boolean DEBUG = true;
     private static final int MAX_VALUE = 100;
@@ -42,6 +44,25 @@ public class TreeSetTester
                 throw new RuntimeException("size() returned " + fakeInt + " and should return " +
                     realInt);
         }
+       //Iterator<Object> it = fake.iterator();
+       Iterator<Integer> it = fake.iterator();
+        int i = 0;
+        System.out.println("Testing the iterator");
+        boolean itF = false;
+        while(it.hasNext())
+        {
+            System.out.print(it.next() + ", ");
+            i++;
+        }
+        if (i != NUMBER_OF_ELEMENTS)
+        {
+            System.out.println("Something wrong with the iterator");
+        }
+        else
+        {
+            itF = true;
+            System.out.println("Iterator works well!");
+        }    
 
         while(real.size() > 0)
         {
@@ -71,7 +92,10 @@ public class TreeSetTester
                     realInt);
         }
 
-        System.out.println("Awesome! MyTreeSet works well!");
+        if (itF)
+            System.out.println("Awesome! MyTreeSet and the iterator both work well!");
+        else
+            System.out.println("Iterator does not work.Check again. MyTreeSet is fine");
     }
 
     private static void debug(String s)

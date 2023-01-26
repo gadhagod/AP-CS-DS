@@ -37,7 +37,7 @@ public class TreeDisplay extends JComponent
     private Set<TreeNode> visited = new HashSet<TreeNode>();
 
     //number of milliseconds to pause when visiting a node
-    private int delay = 500;
+    private int delay = 5;
 
     private BinaryTreeTester tester;
 

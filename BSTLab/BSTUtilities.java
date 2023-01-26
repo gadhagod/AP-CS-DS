@@ -47,8 +47,9 @@ public abstract class BSTUtilities
 	/**
 	 * Inserts a value into a binary search tree
 	 * @param t				The binary search tree
-	 * @param x				The value to insert into t
+	 * @param obj				The value to insert into t
 	 * @param display		The TreeDisplay to visualize the tree during the operation
+	 * @throws Exception
 	 * @precondition		t is a binary search tree in ascending order
 	 * @postcondition		if t is empty, returns a new tree containing x;
 	 * 						otherwise, returns t, with x having been inserted
@@ -57,22 +58,22 @@ public abstract class BSTUtilities
 	 *               		duplicate of an element already in t; only one new
 	 *               		TreeNode is created in the course of the traversal
 	 */
-	public static TreeNode insert(TreeNode t, Comparable x, TreeDisplay display)
+	public static TreeNode insert(TreeNode t, Comparable obj, TreeDisplay display)
 	{
 		if (t == null)
 		{
-			return new TreeNode(x);
+			return new TreeNode(obj);
 		}
 		display.visit(t);
-		if (!x.equals(t.getValue()))
+		if (!obj.equals(t.getValue()))
 		{
-			if(isGreater(x, t.getValue()))
+			if(isGreater(obj, t.getValue()))
 			{
-				t.setRight(insert(t.getRight(), x, display));
+				t.setRight(insert(t.getRight(), obj, display));
 			}
 			else
 			{
-				t.setLeft(insert(t.getLeft(), x, display));
+				t.setLeft(insert(t.getLeft(), obj, display));
 			}
 		}
 		return t;
@@ -86,7 +87,7 @@ public abstract class BSTUtilities
 	 *                		in which the value at node t has been deleted
 	 *                		(and no new TreeNodes have been created)
 	 */
-	private static TreeNode deleteNode(TreeNode t, TreeDisplay display)
+	public static TreeNode deleteNode(TreeNode t, TreeDisplay display)
 	{
 		TreeNode currentNode = t;
         if(currentNode.getLeft() == null && currentNode.getRight() == null) // leaf
