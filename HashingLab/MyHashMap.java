@@ -24,23 +24,23 @@ public class MyHashMap<K, V> implements Map<K, V>
     }
     
     /**
-	 * Gets the index of the bucket with an object's
-	 * hash code, by getting the absolute value of the
-	 * hash code, dividing by the number of buckets,
-	 * and finding that remainder.
-	 * @param obj	The object whose bucket index is
-	 * 				to be determined
-	 * @return		The index of the bucket
-	 */
+     * Gets the index of the bucket with an object's
+     * hash code, by getting the absolute value of the
+     * hash code, dividing by the number of buckets,
+     * and finding that remainder.
+     * @param obj	The object whose bucket index is
+     * 				to be determined
+     * @return		The index of the bucket
+     */
     private int toBucketIndex(Object obj)
     {
         return Math.abs(obj.hashCode()) % NUM_BUCKETS;
     }
 
     /**
-	 * Gets the size of the MyHashMap.
-	 * @return		The size of the MyHasSet
-	 */
+     * Gets the size of the MyHashMap.
+     * @return		The size of the MyHasSet
+     */
     public int size()
     {
         return size;
@@ -329,8 +329,8 @@ public class MyHashMap<K, V> implements Map<K, V>
      * Gets the String representation of the MyHashMap
      * iteratively
      * @return  The string representation of the 
-	 * 			MyHashSet (e.g "{Aarav=650,
-	 * 			John=480}")
+     * 			MyHashSet (e.g "{Aarav=650,
+     * 			John=480}")
      */
     public String toString()
     {
