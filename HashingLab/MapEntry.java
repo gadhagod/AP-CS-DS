@@ -4,10 +4,6 @@ import java.util.Map.Entry;
  * 
  * @author joelmanning
  * @version 1.0
- * @param <K>
- *            the type of key to hold
- * @param <V>
- *            the type of value to hold
  */
 public class MapEntry<K, V> implements Entry<K, V>
 {
