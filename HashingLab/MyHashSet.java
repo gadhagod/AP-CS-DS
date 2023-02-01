@@ -78,7 +78,8 @@ public class MyHashSet<E>
 	/**
 	 * Adds an item to the MyHashSet, by getting
 	 * the bucket to place the item in and adding it to
-	 * the LinkedList rooted there.
+	 * the LinkedList rooted there (and creating one if
+	 * not already present).
 	 * @param obj		The object to add to the MyHashSet
 	 * @return			Whether the MyHashSet was modified
 	 * 					as a result of this method
@@ -145,8 +146,8 @@ public class MyHashSet<E>
 	 * Gets the String representation of the MyHashSet,
 	 * also showing which buckets the values are in.
 	 * @return	The string representation of the 
-	 * 			MyHashSet (e.g "{Aarav=650,
-	 * 			"John"=480}")
+	 * 			set (e.g. "0:[1x1, 3x3, 2x2] 
+	 * 			1:[2x1, 4x3] 2:[3x1] 4:[2x3]")
 	 */
 	public String toString()
 	{
@@ -159,7 +160,7 @@ public class MyHashSet<E>
 
 	/**
 	 * Gets an iterator of the MyHashSet.
-	 * @return	An iterator of the MyHashSet
+	 * @return	An Iterator of the MyHashSet
 	 */
 	public Iterator<E> iterator()
 	{
