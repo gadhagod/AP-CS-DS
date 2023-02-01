@@ -52,7 +52,7 @@ public class Rectangle
 
 	/**
 	 * Checks whether this Rectangle is
-	 * equal to another rectangle by
+	 * equal to another Rectangle by
 	 * comparing their lengths and widths
 	 * @param other	The other Rectangle
 	 * @return		Whether this Rectangle
@@ -64,6 +64,16 @@ public class Rectangle
 		return other.length == length && other.width == width;
 	}
 
+	/**
+	 * Checks whether this Rectangle is
+	 * equal to another Object, cast to
+	 * a Rectangle, by comparing their 
+	 * lengths and widths
+	 * @param other	The other Object
+	 * @return		Whether this Rectangle
+	 * 				and other have equal 
+	 * 				lengths and widths
+	 */
 	public boolean equals(Object other)
 	{
 		return ((Rectangle) other).length == length && ((Rectangle) other).width == width;
