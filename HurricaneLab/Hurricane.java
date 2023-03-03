@@ -1,11 +1,10 @@
-import java.io.*;
-
 /**
  * Models hurricane information, including categories.  
- * Works with HurricaneOrganizer, provides object and comparison skeletons.
- * 
- * @author Susan King
- * @version January 17, 2019
+ * Represents a hurricane with its year, month, pressure,
+ * speed, and name. Allows you to compare these hurricanes
+ * with any of the above fields.
+ * @author  Aarav Borthakur & Susan King
+ * @version 03/01/23
  */
 public class Hurricane
 {
@@ -14,6 +13,7 @@ public class Hurricane
     private int pressure;
     private int speed;
     private String name;
+    private int category;
 
     /**
      * Initializes a Hurricane object with no information.
@@ -24,7 +24,6 @@ public class Hurricane
 
     /**
      * Initializes a Hurricane object with historical information.
-     * 
      * @param year      year the hurricane took place
      * @param month     month in String format
      * @param pressure  hurricane's pressure
@@ -39,46 +38,39 @@ public class Hurricane
         this.pressure = pressure;
         this.speed = speed;
         this.name = name;
+        this.category = determineCategory(speed);
     }
 
     /**
      * Based upon Saffir/Simpson Hurricane Scale, figures out
      * the category using wind speed in knots.
-     * 
-     * Use https://en.wikipedia.org/wiki/Saffir%E2%80%93Simpson_scale.
-     * 
      * @param knots     wind speed in knots
      * @return Saffir/Simpson Hurricane Scale category
      */
     public int determineCategory(int knots)
     {
-        if (knots >= 70)
+        if (knots >= 137)
         {
             return 5;
         }
-        if (knots >= 58)
+        if (knots >= 113)
         {
             return 4;
         }
-        if (knots >= 50)
+        if (knots >= 96)
         {
             return 3;
         }
-        if (knots >= 43)
+        if (knots >= 83)
         {
             return 2;
         }
-        if (knots >= 33)
-        {
-            return 1;
-        }
-        return 0;
+        return 1;
     }
 
-    //Getters
-
     /**
-     * Comment this method.
+     * Gets the name of the Hurricane
+     * @return      The name of the Hurricane
      */
     public String getName()
     {
@@ -86,7 +78,9 @@ public class Hurricane
     }
 
     /**
-     * Comment this method.
+     * Gets the month that the Hurricane
+     * occurred
+     * @return      The month of the Hurricane
      */
     public String getMonth()
     {
@@ -94,7 +88,8 @@ public class Hurricane
     }
 
     /**
-     * Comment this method.
+     * Gets the pressure of the Hurricane
+     * @return      The pressure of the Hurricane
      */
     public int getPressure()
     {
@@ -102,7 +97,9 @@ public class Hurricane
     }
 
     /**
-     * Comment this method.
+     * Gets the wind speed of the hurricane
+     * @return      The wind speed of the hurricane
+     *              in knots
      */
     public int getSpeed()
     {
@@ -110,7 +107,9 @@ public class Hurricane
     }
 
     /**
-     * Comment this method.
+     * Gets the year that the Hurricane
+     * occurred
+     * @return      The year of the Hurricane
      */
     public int getYear()
     {
@@ -118,15 +117,17 @@ public class Hurricane
     }
 
     /**
-     * Comment this method.
+     * Gets the category the Hurricane through 
+     * the Saffir/Simpson Hurricane Scale
+     * @return      The category of the Hurricane
      */
     public int getCategory()
     {
-        return determineCategory(speed);
+        return category;
     }
 
     /**
-     * Comment this method even though you did not write it.
+     * Prints the String representation of the Hurricane
      */
     public void print()
     {
@@ -134,7 +135,10 @@ public class Hurricane
     }
 
     /**
-     * Alter code a bit then comment this method even though you did not write it.
+     * Gets the String representation of the Hurricane
+     * @return  The String representation of the Hurricane
+     *          with its year, month, name, category, speed
+     *          and pressure
      */
     public String toString()
     {
@@ -143,23 +147,28 @@ public class Hurricane
     }
 
     /**
-     * Comment this method.
+     * Compares the years of two Hurricanes
+     * @param h The other Hurricane to compare with
+     * @return  A value == 0 if the Hurricanes'
+     *          years are equal, > 0 if this 
+     *          Hurricane's year is greater,    
+     *          and < 0 if this Hurricane's year 
+     *          is lesser
      */
     public int compareYearTo(Hurricane h)
     {
-        if (year > h.getYear())
-        {
-            return 1;
-        } 
-        if (year == h.getYear())
-        {
-            return 0;
-        }
-        return -1;
+        return year - h.getYear();
     }
 
     /**
-     * Comment this method.
+     * Lexicographically compares the years of two 
+     * Hurricanes
+     * @param h The other Hurricane to compare with
+     * @return  A value == 0 if the Hurricanes'
+     *          names are equal, > 0 if this 
+     *          Hurricane's name is lexographically 
+     *          greater, and < 0 if this Hurricane's name
+     *          is lexographically lesser
      */
     public int compareNameTo(Hurricane h)
     {
@@ -167,52 +176,45 @@ public class Hurricane
     }
 
     /**
-     * Comment this method.
+     * Compares the pressures of two Hurricanes
+     * @param h The other Hurricane to compare with
+     * @return  A value == 0 if the Hurricanes'
+     *          pressures are equal, > 0 if this 
+     *          Hurricane's pressure is greater,    
+     *          and < 0 if this Hurricane's pressure
+     *          is lesser
      */
     public int comparePressureTo(Hurricane h)
     {
-        if (pressure > h.getPressure())
-        {
-            return 1;
-        } 
-        if (pressure == h.getPressure())
-        {
-            return 0;
-        }
-        return -1;
+        return pressure - h.getPressure();
     }
 
     /**
-     * Comment this method.
+     * Compares the speed of two Hurricanes
+     * @param h The other Hurricane to compare with
+     * @return  A value == 0 if the Hurricanes'
+     *          speed are equal, > 0 if this 
+     *          Hurricane's speed is greater,    
+     *          and < 0 if this Hurricane's speed
+     *          is lesser
      */
     public int compareSpeedTo(Hurricane h)
     {
-        if (speed > h.getSpeed())
-        {
-            return 1;
-        } 
-        if (speed == h.getSpeed())
-        {
-            return 0;
-        }
-        return -1;
+        return speed - h.getSpeed();
     }
 
     /**
-     * Comment this method.
+     * Compares the Saffir/Simpson category of two 
+     * Hurricanes
+     * @param h The other Hurricane to compare with
+     * @return  A value == 0 if the Hurricanes'
+     *          category are equal, > 0 if this 
+     *          Hurricane's category is greater,    
+     *          and < 0 if this Hurricane's category
+     *          is lesser
      */
     public int compareCategoryTo(Hurricane h)
     {
-        int thisCategory = getCategory();
-        int otherCategory = h.getCategory();
-        if (thisCategory > otherCategory)
-        {
-            return 1;
-        } 
-        if (thisCategory == otherCategory)
-        {
-            return 0;
-        }
-        return -1;
+        return getCategory() - h.getCategory();
     }
 }

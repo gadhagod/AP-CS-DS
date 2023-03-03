@@ -4,32 +4,37 @@ import java.util.*;
 /**
  * Models hurricane information, works with Hurricane class
  * and the user to manipulate an array of hurricane data.
- * 
- * Data came from http://www.aoml.noaa.gov/hrd/tcfaq/E23.html except for 2018.
- * 2018 data came from https://en.wikipedia.org/wiki/2018_Atlantic_hurricane_season.
- *
- * @author Aarav Borthakur & Susan King 
- * @version January 17, 2019
- * @version February 10, 2020 Polished code via variable names
+ * Data came from http://www.aoml.noaa.gov/hrd/tcfaq/E23.html 
+ * except for 2018. 2018 data came from 
+ * https://en.wikipedia.org/wiki/2018_Atlantic_hurricane_season.
+ * @author Aarav Borthakur & Susan King
+ * @version 03/01/23
  */
-public class HurricaneOrganizerArray
+public class HurricaneOrganizerArrayAarav
 {
     private Hurricane [] hurricanes;
 
     /**
-     * Comment this constructor even though you did not write it.
-     * 
-     * @throws IOException  if file with the hurricane information cannot be found
+     * Constructs a HurricaneOrganizerArray given a 
+     * file name to read data from
+     * @param filename      The name of the file to read
+     * from
+     * @throws IOException  if file with the hurricane 
+     *                      information cannot be found
      */
-    public HurricaneOrganizerArray(String filename)throws IOException
+    public HurricaneOrganizerArrayAarav(String filename) throws IOException
     {
         readFile(filename);   
     }
 
     /**
-     * Comment this method even though you did not write it.
-     * 
-     * @throws IOException  if file with the hurricane information cannot be found
+     * Determines the length of a file given its
+     * name
+     * @param filename      The name of the file
+     *                      whose length is to be determined
+     * @return              The number of lines in the file
+     * @throws IOException  if file with the hurricane information 
+     *                      cannot be found
      */
     private static int determineFileLength(String filename) throws IOException
     {
@@ -46,7 +51,12 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method even though you did not write it.
+     * Sets the hurricanes instance field by reading data
+     * from a given file.
+     * @param filename      The name of the file to
+     *                      read from
+     * @throws IOException  if file with the hurricane information 
+     *                      cannot be found
      */
     public void readFile(String filename) throws IOException
     {
@@ -76,9 +86,13 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method.
+     * Gets the highest wind speed of the
+     * Hurricanes in the hurricanes instance
+     * field
+     * @return      The greatest wind speed 
+     *              in hurricanes
      */
-    public int findMaxWindSpeed( )
+    public int findMaxWindSpeed()
     {
         int max = hurricanes[0].getSpeed();
         for (Hurricane h : hurricanes)
@@ -92,9 +106,12 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method.
+     * Gets the max highest pressure found in
+     * hurricanes instance field
+     * @return      The greatest pressure 
+     *              in hurricanes
      */
-    public int findMaxPressure( )
+    public int findMaxPressure()
     {
         int max = hurricanes[0].getPressure();
         for (Hurricane h : hurricanes)
@@ -108,9 +125,12 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method.
+     * Gets the lowest wind speed of the
+     * Hurricanes in hurricanes 
+     * @return      The lowest wind speed 
+     *              in hurricanes
      */
-    public int findMinWindSpeed( )
+    public int findMinWindSpeed()
     {
         int min = hurricanes[0].getSpeed();
         for (Hurricane h : hurricanes)
@@ -124,9 +144,12 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method.
+     * Gets the minimum pressure found in
+     * hurricanes
+     * @return      The lowest pressure 
+     *              in hurricanes
      */
-    public int findMinPressure( )
+    public int findMinPressure()
     {
         int min = hurricanes[0].getPressure();
         for (Hurricane h : hurricanes)
@@ -140,9 +163,11 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method.
+     * Gets the average wind speed of the hurricanes
+     * @return      The average wind speed of hurricanes
+     *              instance field
      */
-    public double calculateAverageWindSpeed( )
+    public double calculateAverageWindSpeed()
     {
         int sum = 0;
         for (Hurricane h : hurricanes)
@@ -153,9 +178,11 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method.
+     * Gets the average pressure of the hurricanes
+     * @return      The average pressure of the hurricanes
+     *              instance field
      */
-    public double calculateAveragePressure( )
+    public double calculateAveragePressure()
     {
         int sum = 0;
         for (Hurricane h : hurricanes)
@@ -166,9 +193,11 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method.
+     * Gets the average category of the hurricanes
+     * @return      The average category of the hurricanes
+     *              instance field
      */
-    public double calculateAverageCategory( )
+    public double calculateAverageCategory()
     {
         int sum = 0;
         for (Hurricane h : hurricanes)
@@ -178,6 +207,17 @@ public class HurricaneOrganizerArray
         return (double) sum / hurricanes.length;
     }
 
+    /**
+     * Swaps two values in an array
+     * @param arr     The array containing values
+     *                to be swapped
+     * @param first   The index of the first value
+     *                to swap
+     * @param second  The index of the other value
+     *                to swap
+     * @postcondition arr[first] and arr[second]
+     *                is swapped
+     */
     private void swap(Hurricane[] arr, int first, int second)
     {
         Hurricane temp = arr[first];
@@ -185,12 +225,18 @@ public class HurricaneOrganizerArray
         arr[second] = temp;
     }
 
+    /**
+     * Gets the minimum year in hurricanes
+     * @param arr   The array of hurricanes
+     * @param low   The index to start
+     *              searching from
+     */
     private int findMinYear(Hurricane[] arr, int low)
     {
         int minIndex = low;
         for (int i = low; i < arr.length; i++)
         {
-            if (arr[i].getYear() < arr[minIndex].getYear())
+            if (arr[i].compareYearTo(arr[minIndex]) < 0)
             {
                 minIndex = i;
             }
@@ -200,39 +246,54 @@ public class HurricaneOrganizerArray
 
     /**
      * Sorts ascending based upon the hurricanes' years,
-     * The algorithm is selection sort.
+     * using selection sort.
+     * @postcondition   The hurricanes are sorted by year
+     *                  in ascending order
      */
     public void sortYears()
     {
         for (int i = 0; i < hurricanes.length - 1; i++)
         {
-            swap(hurricanes, i, findMinYear(hurricanes, i + 1));
+            swap(hurricanes, i, findMinYear(hurricanes, i));
         }
     }
 
     /**
-     * Lexicographically sorts hurricanes based on the hurricanes' name, 
-     * using insertion sort.
+     * Lexicographically sorts hurricanes in ascending order 
+     * based on the hurricanes' name, using insertion sort.
+     * @postcondition   The hurricanes are lexicographically sorted
+     *                  in ascending order
      */
     public void sortNames()
     {
         for (int i = 1; i < hurricanes.length; i++)
         {
-            int j = i;
-            while (j > 0 && hurricanes[j].getName().compareTo(hurricanes[j - 1].getName()) < 0)
+            Hurricane val = hurricanes[i];
+            int j = i - 1;
+            while (j >= 0 && hurricanes[j].compareNameTo(val) > 0)
             {
-                swap(hurricanes, j, j - 1);
+                hurricanes[j + 1] = hurricanes[j];
                 j--;
             }
+            hurricanes[j + 1] = val;
         }
     }
 
+    /**
+     * Gets the max category found in hurricanes
+     * @param arr   The array of Hurricanes
+     *              to be searched through
+     * @param low   The index of arr to start 
+     *              searching from
+     * @return      The index of the hurricane with
+     *              the highest category
+     */
     private int findMaxCategory(Hurricane[] arr, int low)
     {
         int maxIndex = low;
         for (int i = low; i < arr.length; i++)
         {
-            if (arr[i].getCategory() > arr[maxIndex].getCategory())
+            if (arr[i].compareCategoryTo(arr[maxIndex]) > 0)
             {
                 maxIndex = i;
             }
@@ -243,6 +304,8 @@ public class HurricaneOrganizerArray
     /**
      * Sorts descending based upon the hurricanes' categories,
      * using selection sort.
+     * @postcondition   The hurricanes are sorted in descending
+     *                  order
      */
     public void sortCategories()
     {
@@ -252,7 +315,17 @@ public class HurricaneOrganizerArray
         }
     }  
 
-
+    /**
+     * Merges two sorted parts in in array by comparing their pressures
+     * in descending order
+     * @param a       The array containing the parts to merge
+     * @param low     The starting index of the first part of the array
+     * @param mid     The ending index of the first part of the array
+     * @param high    The ending index of the second part of the array
+     * @precondition  a[low]...a[mid] and a[mid + 1]...a[high] is sorted 
+     *                in descending order
+     * @postcondition a[low]...a[high] is sorted in descending order
+     */
     private void mergePressure(Hurricane[] a, int low, int mid, int high)
     {
         Hurricane[] copy = new Hurricane[a.length];
@@ -279,6 +352,8 @@ public class HurricaneOrganizerArray
 
     /**
      * Sorts descending based upon pressures using a non-recursive merge sort.
+     * @postcondition   Hurricanes are sorted in descending order based
+     *                  on pressure
      */
     public void sortPressures()
     {
@@ -304,24 +379,47 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Sorts ascending based upon wind speeds using a recursive merge sort. 
+     * Sorts ascending based upon wind speeds using a recursive merge sort 
+     * @param low       The index to start sorting from
+     * @param high      The last index to sort
+     * @postcondition   hurricanes[low]...hurricanes[high] is sorted in
+     *                  descending order by wind speed
      */
     public void sortWindSpeeds(int low, int high)
     {
         mergeWindSpeedsSortHelper(low, (low + high) / 2, high);
     }
 
+    /**
+     * Merges two sorted parts of an array by comparing their 
+     * speeds
+     * @param a         The array containing the parts to be 
+     *                  merged
+     * @param lowIndex  The starting index of the first part
+     *                  of the array
+     * @param midIndex  The ending index of the second part
+     *                  of the array
+     * @param highIndex The ending index of the second part 
+     *                  of the array
+     * @precondition    a[lowIndex]...a[midIndex] and 
+     *                  a[midIndex + 1]...a[highIndex] is sorted
+     *                  in ascending order
+     * @postcondition   a[lowIndex]...a[highIndex] is sorted in 
+     *                  ascending order
+     */
     private void mergeSpeed(Hurricane[] a, int lowIndex, int midIndex, int highIndex)
     {
         Hurricane[] copy = new Hurricane[a.length];
         for (int i = lowIndex; i <= highIndex; i++)
+        {
             copy[i] = a[i];
+        }
         int left = lowIndex;
         int right = midIndex + 1;
         for (int i = lowIndex; i <= highIndex; i++)
         {
             if (right > highIndex ||
-                (left <= midIndex && copy[left].compareSpeedTo(copy[right]) < 0))
+                (left <= midIndex && copy[left].compareSpeedTo(copy[right]) > 0))
             {
                 a[i] = copy[left];
                 left++;
@@ -338,15 +436,16 @@ public class HurricaneOrganizerArray
      * Merges two consecutive parts of an array, using wind speed as a criteria
      * and a temporary array.  The merge results in an ascending sort between
      * the two given indices.
-     * 
-     * @precondition the two parts are sorted ascending based upon wind speed
-     * 
-     * @param low   the starting index of one part of the array.
-     *              This index is included in the first half.
-     * @param mid   the starting index of the second part of the array.
-     *              This index is included in the second half.
-     * @param high  the ending index of the second part of the array.  
-     *              This index is included in the merge.
+     * @precondition  hurricanes[low]...arr[mid] and hurricanes[mid + 1] are 
+     *                sorted ascending based upon wind speed
+     * @param low     The starting index of one part of the array.
+     *                This index is included in the first half.
+     * @param mid     The starting index of the second part of the array.
+     *                This index is included in the second half.
+     * @param high    The ending index of the second part of the array.  
+     *                This index is included in the merge.
+     * @postcondition hurricanes[low]...hurricanes[high] is sorted in ascending
+     *                order by wind speed
      */
     private void mergeWindSpeedsSortHelper(int low, int mid, int high)
     {
@@ -363,13 +462,12 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Sequential search for all the hurricanes in a given year.
-     * 
-     * @param   year
-     * @return  an array of objects in Hurricane that occured in
-     *          the parameter year
+     * Sequentially searches for all the hurricanes in a given year
+     * @param year  The year to search for in hurricanes
+     * @return      An array of Hurricanes that occured in the year
+     *              year
      */
-    public Hurricane [] searchYear(int year)
+    public Hurricane[] searchYear(int year)
     {
         int counter = 0;
         for (Hurricane h : hurricanes)
@@ -393,31 +491,30 @@ public class HurricaneOrganizerArray
     }     
 
     /**
-     * Binary search for a hurricane name.
-     * 
-     * @param  name   hurricane name being search
-     * @return a Hurricane array of all objects in hurricanes with specified name. 
-     *         Returns null if there are no matches
+     * Searches through binary serach for a hurricane name
+     * @param name    the name to search for in hurricanes
+     * @return        an array of Hurricanes with the given 
+     *                name, null if there are no matches
+     * @postcondition hurricanes are sorted by name in 
+     *                ascending order
      */
-    public Hurricane[ ] searchHurricaneName(String name)
+    public Hurricane[] searchHurricaneName(String name)
     {
         sortNames();
         return searchHurricaneNameHelper(name, 0, hurricanes.length - 1);
     }
 
     /**
-     * Recursive binary search for a hurricane name.  This is the helper
-     * for searchHurricaneName.
-     * 
-     * @precondition  the array must be presorted by the hurricane names
-     * 
-     * @param   name  hurricane name to search for
-     * @param   low   the smallest index that needs to be checked
-     * @param   high  the highest index that needs to be checked
-     * @return  a Hurricane array of all Hurricane objects with a specified name. 
-     *          Returns null if there are no matches
+     * Recursively binary searches for a hurricane name.  This is the 
+     * helper for searchHurricaneName.
+     * @precondition  hurricanes is sorted by name
+     * @param name    hurricane name to search for
+     * @param low     the smallest index that needs to be checked
+     * @param high    the highest index that needs to be checked
+     * @return        a array of Hurricanes with the specified name, 
+     *                null if there are no matches
      */
-    private Hurricane[ ] searchHurricaneNameHelper(String name, int low , int high)
+    private Hurricane[] searchHurricaneNameHelper(String name, int low , int high)
     {
         // Test for the base case when a match is not found
         if (low > high)
@@ -450,14 +547,12 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Supports Binary Search method to get the full range of matches.
-     * 
-     * @precondition  the array must be presorted by the hurricane names
-     * 
-     * @param   name hurricane name being search for
-     * @param   index  the index where a match was found
-     * @return  a Hurricane array with objects from hurricanes with specified name. 
-     *          Returns null if there are no matches
+     * Helps searchHurricaneNameHelper get the full range of matches.
+     * @precondition hurricanes is sorted by the name
+     * @param name   hurricane name being search for
+     * @param index  the index where a match was found
+     * @return       a array of Hurricanes with the specified name,
+     *               null if there are no matches
      */
     private Hurricane[] retrieveMatchedNames(String name, int index)
     {
@@ -488,7 +583,7 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method even though you did not write it.
+     * Prints the header of the table
      */
     public void printHeader()
     {
@@ -498,7 +593,7 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment this method even though you did not write it.
+     * Prints each hurricane's feilds in the current order
      */
     public void printHurricanes()
     {
@@ -506,9 +601,10 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Add comments here even though you did not write the method.
+     * Given a list of Hurricanes, prints each Hurricane's
+     * fields in the current order
      */
-    public void printHurricanes(Hurricane [] hurs)
+    public void printHurricanes(Hurricane[] hurs)
     {
         if(hurs.length == 0)
         {
@@ -523,7 +619,8 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Add comments here even though you did not write the method.
+     * Prints a menu that allows the user to choose which
+     * method to test
      */
     public void printMenu()
     {
@@ -542,37 +639,41 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Add comments here even though you did not write the method.
+     * Prints the maximum and minimum wind speeds and 
+     * pressures of the hurricanes
      */
-    public void printMaxAndMin( )
+    public void printMaxAndMin()
     {
         System.out.println("Maximum wind speed is " + 
-            findMaxWindSpeed( ) +
+            findMaxWindSpeed() +
             " knots and minimum wind speed is " + 
-            findMinWindSpeed( ) + " knots.");
+            findMinWindSpeed() + " knots.");
         System.out.println("Maximum pressure is " + 
-            findMaxPressure( ) +
+            findMaxPressure() +
             " and minimum pressure is " + 
-            findMinPressure( ) + ".");
+            findMinPressure() + ".");
     }
 
     /**
-     * Add comments here even though you did not write the method.
+     * Prints the average wind speeds, pressures, and categories
+     * of hurricanes
      */
-    public void printAverages( )
+    public void printAverages()
     {
         System.out.printf("Average wind speed is %5.2f knots. \n" , 
-            calculateAverageWindSpeed( ));
+            calculateAverageWindSpeed());
         System.out.printf("Average pressure is %5.2f. \n" , 
-            calculateAveragePressure( ));
+            calculateAveragePressure());
         System.out.printf("Average category is %5.2f. \n" , 
-            calculateAverageCategory( ));
+            calculateAverageCategory());
     }
 
     /**
-     * Add comments here even though you did not write the method.
+     * Asks the user for an input and runs the corresponding
+     * method (or quits) given the input
+     * @return  true if user quits, false otherwise
      */
-    public boolean interactWithUser( )
+    public boolean interactWithUser()
     {
         Scanner in = new Scanner(System.in);
         boolean done = false;
@@ -581,42 +682,42 @@ public class HurricaneOrganizerArray
         // clear the input buffer
         in.nextLine();
 
-        if(choice == 1)
+        if (choice == 1)
         {
-            printHurricanes( ); 
+            printHurricanes(); 
         }
         else if (choice == 2)
         {
-            printMaxAndMin( );
+            printMaxAndMin();
         }
         else if (choice == 3)
         {
-            printAverages( );
+            printAverages();
         }
         else if(choice == 4)
         {
             sortYears();
-            printHurricanes( );
+            printHurricanes();
         }
         else if(choice == 5)
         {
             sortNames();
-            printHurricanes( );
+            printHurricanes();
         }
         else if(choice == 6)
         {
             sortCategories();
-            printHurricanes( );
+            printHurricanes();
         }
         else if(choice == 7)
         {
             sortPressures();
-            printHurricanes( );
+            printHurricanes();
         }
         else if(choice == 8)
         {
             sortWindSpeeds(0, hurricanes.length - 1);
-            printHurricanes( );
+            printHurricanes();
         }
         else if(choice == 9)
         {
@@ -638,19 +739,19 @@ public class HurricaneOrganizerArray
     }
 
     /**
-     * Comment the method even though you did not write it.
-     * 
-     * @param args  user's information from the command line
-     * 
+     * Prints the menu and asks for user input ot test a method
+     * until the user quits
+     * @param args          command line arguments passed into
+     *                      the program
      * @throws IOException  if file with the hurricane information cannot be found
      */
-    public static void main (String [] args) throws IOException
+    public static void main(String[] args) throws IOException
     {
-        HurricaneOrganizerArray cane = new HurricaneOrganizerArray("hurricanedata.txt");
+        HurricaneOrganizerArrayAarav cane = new HurricaneOrganizerArrayAarav("hurricanedata.txt");
         boolean areWeDoneYet = false;
-        while ( ! areWeDoneYet)
+        while (!areWeDoneYet)
         {
-            areWeDoneYet = cane.interactWithUser( );    
+            areWeDoneYet = cane.interactWithUser();    
         }
     }
 }

@@ -8,7 +8,7 @@ PROJECT TITLE: Hurricane Organizer
 PURPOSE OF PROJECT: To practice insersion sort, selection sort, merge sort (both recursive and non-recursive), 
                     binary search, and sequential search
 VERSION or DATE:    Feb 25, 2023
-HOW TO START THIS PROJECT:  javac *.java ** java HurricaneOrganizerArray.java
+HOW TO START THIS PROJECT:  javac *.java ** java HurricaneOrganizerArrayAarav.java
 AUTHORS:                    Aarav Borthakur, Susan King
 USER INSTRUCTIONS:          Compile java files and run the main method in
-                            HurricaneOrganizerArray
+                            HurricaneOrganizerArrayAarav
