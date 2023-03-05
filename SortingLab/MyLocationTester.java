@@ -23,7 +23,7 @@ public class MyLocationTester {
 
         System.out.println("\nWe will now use selection sort to test that indexOfMin works\n");
 
-        (new Sorter()).insertionSort(locations);
+        (new Sorter()).selectionSort(locations);
         System.out.println("Sorted array of locations:");
         printArr(locations);
 

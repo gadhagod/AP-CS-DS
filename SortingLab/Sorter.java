@@ -111,18 +111,16 @@ public class Sorter
      */
     public void insert(Comparable[] a, int nextIndex)
     {
-        boolean cont = true;
-        for (int i = nextIndex; i > 0 && cont; i--) 
+        Comparable temp = a[nextIndex];
+        int curr = nextIndex - 1;
+        while (curr >= 0 && a[curr].compareTo(temp) > 0)
         {
-            if (a[i - 1].compareTo(a[i]) > 0)
-            {
-                swap(a, i - 1, i);
-            }
-            else
-            {
-                cont = false;
-            }
+            a[curr + 1] = a[curr];
+            curr--;
+            display.update(); 
         }
+        a[curr + 1] = temp;
+        display.update(); 
     }
 
     /**
