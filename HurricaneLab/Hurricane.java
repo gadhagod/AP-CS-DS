@@ -30,8 +30,7 @@ public class Hurricane
      * @param speed     hurricane's speed in knots
      * @param name      hurricane's name
      */
-    public Hurricane(int year, String month, 
-    int pressure, int speed, String name)
+    public Hurricane(int year, String month, int pressure, int speed, String name)
     {
         this.year = year;
         this.month = month;
