@@ -1,8 +1,6 @@
 import java.awt.Color;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 /**
  * Represents a Chess game
  */
