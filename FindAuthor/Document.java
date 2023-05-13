@@ -171,8 +171,7 @@ public class Document
                     {
                         totalNumWords++;
                         totalWordLength += token.getValue().length();
-                        boolean x = uniqueWords.add(token);
-                        if (!x)
+                        if (!uniqueWords.add(token))
                         {
                             wordsThatAppearMoreThanOnce.add(token);
                         }
